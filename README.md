@@ -1,6 +1,6 @@
 # Power_Math
 # To the Power of Math!
-![Image](diagram-export-1-22-2025-10_40_20-PM.png)
+![Image](Power_Math/diagram-export-1-22-2025-10_40_20-PM.png)
 
 
 ## Overview
