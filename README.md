@@ -1,6 +1,8 @@
 # Power_Math
 # To the Power of Math!
-Power_Math/diagram-export-1-22-2025-10_40_20-PM.png
+![Image](diagram-export-1-22-2025-10_40_20-PM.png)
+
+
 ## Overview
 
 "To the Power of Math!" is a serverless application that calculates the power of a base number raised to an exponent using AWS services. The project leverages **AWS Lambda**, **Amazon DynamoDB**, **API Gateway**, and **AWS Amplify** for efficient and scalable deployment. A clean and intuitive user interface is created using HTML, CSS, and JavaScript.
