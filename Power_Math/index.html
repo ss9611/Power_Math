@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To the Power of Math!</title>
+    <style>
+        body {
+            background-color: #222629;
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #FFFFFF;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #86C232;
+            border-radius: 10px;
+            background-color: #333;
+            width: 400px;
+        }
+
+        h1 {
+            color: #86C232;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #86C232;
+            font-size: 18px;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            font-size: 16px;
+            padding: 5px;
+            width: 80%;
+            border: 1px solid #86C232;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #86C232;
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #75A020;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #86C232;
+        }
+    </style>
+    <script>
+        const callAPI = (base, exponent) => {
+            if (!base || !exponent || isNaN(base) || isNaN(exponent)) {
+                document.getElementById("result").innerText = "Please enter valid numeric values!";
+                return;
+            }
+
+            const headers = new Headers({ "Content-Type": "application/json" });
+            const body = JSON.stringify({ base: base.trim(), exponent: exponent.trim() });
+
+            const requestOptions = {
+                method: 'POST',
+                headers: headers,
+                body: body,
+                redirect: 'follow'
+            };
+
+            fetch("https://4y7aybm3de.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    document.getElementById("result").innerText = `Result: ${result.body}`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById("result").innerText = "An error occurred while processing the request.";
+                });
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>TO THE POWER OF MATH!</h1>
+        <form onsubmit="event.preventDefault(); callAPI(document.getElementById('base').value, document.getElementById('exponent').value);">
+            <label for="base">Base Number:</label>
+            <input type="text" id="base" placeholder="Enter base number">
+            <label for="exponent">Exponent:</label>
+            <input type="text" id="exponent" placeholder="Enter exponent">
+            <button type="submit">CALCULATE</button>
+        </form>
+        <div id="result"></div>
+    </div>
+</body>
+</html>
